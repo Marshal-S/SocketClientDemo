@@ -56,8 +56,10 @@
     
     struct sockaddr_in socketAddr;
     socketAddr.sin_family = AF_INET;
-    socketAddr.sin_port = SocketPort;
-    socketAddr.sin_addr.s_addr = SocketIP;
+    //htons : 将一个无符号短整型的主机数值转换为网络字节顺序，不同cpu 是不同的顺序 (big-endian大尾顺序 , little-endian小尾顺序)
+    socketAddr.sin_port = htons(8040);//设置端口号
+    //inet_addr是一个计算机函数，功能是将一个点分十进制的IPv4地址转换成一个长整数型数
+    socketAddr.sin_addr.s_addr =  inet_addr("172.26.105.76"); //设置ip
     
     //
     /**
